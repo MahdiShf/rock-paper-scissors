@@ -1,5 +1,11 @@
 let playerScore = 0;
 let computerScore = 0;
+function playGame() {
+    for (
+        let i = 0;
+        i < 5;
+        i++ 
+      ){
 function computerPlay() {
   let choices = ["Rock", "Paper", "Scissors"];
   return choices[Math.floor(Math.random() * choices.length)];
@@ -50,3 +56,16 @@ function singleRound(playerSelection, computerSelection) {
     }
   }
   singleRound(playerSelection, computerSelection);
+ }
+ if ((i = 5 && playerScore > computerScore)) {
+    alert(`You won the game!
+    You: ${playerScore} Computer: ${computerScore}`);
+  } else if ((i = 5 && playerScore < computerScore)) {
+    alert(`Game over, Computer has defeated you!
+    You: ${playerScore} Computer: ${computerScore}`);
+  } else if ((i = 5 && playerScore === computerScore)) {
+    alert(`Game over,Tie!
+    You: ${playerScore} Computer: ${computerScore}`);
+  }
+}
+playGame();
