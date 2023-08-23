@@ -1,76 +1,115 @@
 let playerScore = 0;
 let computerScore = 0;
-function playGame() {
-  for (
-    let i = 0;
-    i < 5;
-    i++ // Runs the game for 5 times
-  ) {
-    // This function will randomly return either Rock, Paper or Scissors:
-    function computerPlay() {
-      let choices = ["Rock", "Paper", "Scissors"];
-      return choices[Math.floor(Math.random() * choices.length)];
-    }
-    const computerSelection = computerPlay();
-    // This method will get input from the player:
-    const humanPlay = prompt(
-      `What is your choice? 
-Rock / Paper / Scissors`
-    );
-    // This function will make the first character uppercase and convert rest of the string to lowercase:
-    function capFirstLetter(string) {
-      if (humanPlay !== null) {
-        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-      }
-    }
-    const playerSelection = capFirstLetter(humanPlay);
-    // This function will show results of round:
-    function singleRound(playerSelection, computerSelection) {
-      if (
-        (playerSelection === "Rock" && computerSelection === "Scissors") ||
-        (playerSelection === "Scissors" && computerSelection === "Paper") ||
-        (playerSelection === "Paper" && computerSelection === "Rock")
-      ) {
-        ++playerScore;
-        alert(`You won this round,
-  Computer played ${computerSelection}.
-  ${playerSelection} beats ${computerSelection}!
-  You: ${playerScore} Computer: ${computerScore}`);
-      } else if (
-        (playerSelection === "Scissors" && computerSelection === "Rock") ||
-        (playerSelection === "Paper" && computerSelection === "Scissors") ||
-        (playerSelection === "Rock" && computerSelection === "Paper")
-      ) {
-        ++computerScore;
-        alert(`You lost this round,
-    Computer played ${computerSelection}.
-    ${computerSelection} beats ${playerSelection}!
-    You: ${playerScore} Computer: ${computerScore}`);
-      } else if (
-        (playerSelection === "Rock" && computerSelection === "Rock") ||
-        (playerSelection === "Scissors" && computerSelection === "Scissors") ||
-        (playerSelection === "Paper" && computerSelection === "Paper")
-      ) {
-        alert(`You both picked the same option, try again!
-      You: ${playerScore} Computer: ${computerScore}`);
-      } else if (humanPlay == null || humanPlay == "") {
-        alert(`Canceled!`);
-        i = 5;
-      } else {
-        alert("Wrong word.");
-      }
-    }
-    singleRound(playerSelection, computerSelection);
+let round = 0;
+let gameActive = true;
+// This function will randomly return either Rock, Paper or Scissors:
+const computerSelection = function () {
+  let choices = ["Rock", "Paper", "Scissors"];
+  return choices[Math.floor(Math.random() * choices.length)];
+};
+// This method will get input from the player:
+const playerSelection = document.querySelectorAll(".player-choices img");
+playerSelection.forEach((choice) => {
+  choice.addEventListener("click", handClick);
+});
+function handClick() {
+  if (!gameActive) {
+    return;
   }
-  if ((i = 5 && playerScore > computerScore)) {
-    alert(`You won the game!
-    You: ${playerScore} Computer: ${computerScore}`);
-  } else if ((i = 5 && playerScore < computerScore)) {
-    alert(`Game over, Computer has defeated you!
-    You: ${playerScore} Computer: ${computerScore}`);
-  } else if ((i = 5 && playerScore === computerScore)) {
-    alert(`Game over,Tie!
-    You: ${playerScore} Computer: ${computerScore}`);
-  } // Shows final results
+  const playerSelection = this.alt;
+  const computerChoice = computerSelection();
+  singleRound(playerSelection, computerChoice);
 }
-playGame();
+function singleRound(playerSelection, computerSelection) {
+  if (
+    (playerSelection === "Rock" && computerSelection === "Scissors") ||
+    (playerSelection === "Scissors" && computerSelection === "Paper") ||
+    (playerSelection === "Paper" && computerSelection === "Rock")
+  ) {
+    showChoice(playerSelection, computerSelection);
+    playerScore++;
+    round++;
+    updateScore();
+    updateCounter();
+    roundResult("You won this round!");
+  } else if (
+    (playerSelection === "Scissors" && computerSelection === "Rock") ||
+    (playerSelection === "Paper" && computerSelection === "Scissors") ||
+    (playerSelection === "Rock" && computerSelection === "Paper")
+  ) {
+    showChoice(playerSelection, computerSelection);
+    computerScore++;
+    round++;
+    updateScore();
+    updateCounter();
+    roundResult("Computer won this round!");
+  } else if (playerSelection === computerSelection) {
+    showChoice(playerSelection, computerSelection);
+    round++;
+    updateScore();
+    updateCounter();
+    roundResult("Tie!");
+  }
+  if ((round === 5) & (playerScore > computerScore)) {
+    stopGame();
+    roundResult("You won the Game, Congratulations!");
+    showReset();
+  } else if ((round === 5) & (playerScore < computerScore)) {
+    stopGame();
+    roundResult("Sorry,You lost the Game!");
+    showReset();
+  } else if ((round === 5) & (playerScore === computerScore)) {
+    stopGame();
+    roundResult("Game is over, Tie!");
+    showReset();
+  }
+}
+const pChoice = document.querySelector(".p-choice");
+const cChoice = document.querySelector(".c-choice");
+const pScore = document.querySelector(".p-score");
+const cScore = document.querySelector(".c-score");
+const resetButton = document.querySelector(".reset-game");
+function showChoice(playerChosen, computerChosen) {
+  pChoice.textContent = `Your Choice: ${playerChosen}`;
+  cChoice.textContent = `Computer Choice: ${computerChosen}`;
+}
+function updateScore() {
+  pScore.textContent = `Score: ${playerScore}`;
+  cScore.textContent = `Score: ${computerScore}`;
+}
+function updateCounter() {
+  const roundCounter = document.querySelector(".round-counter");
+  roundCounter.textContent = `Round: ${round}`;
+}
+function roundResult(resultContent) {
+  const roundResult = document.querySelector(".round-result");
+  roundResult.textContent = resultContent;
+}
+function stopGame() {
+  gameActive = false;
+  playerSelection.forEach((choice) => {
+    choice.removeEventListener("click", handClick);
+  });
+}
+function showReset() {
+  resetButton.addEventListener("click", reset);
+  resetButton.style.display = "block";
+}
+function reset() {
+  pChoice.textContent = "";
+  cChoice.textContent = "";
+  playerScore = 0;
+  computerScore = 0;
+  round = 0;
+  gameActive = true;
+  updateScore();
+  updateCounter();
+  roundResult("Welcome!");
+  resetButton.style.display = "none";
+  playerSelection.forEach((choice) => {
+    choice.removeEventListener("click", handClick);
+  });
+  playerSelection.forEach((choice) => {
+    choice.addEventListener("click", handClick);
+  });
+}
