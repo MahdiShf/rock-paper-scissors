@@ -1,8 +1,9 @@
+/* margin and background color for the body */
 body {
   margin: 0;
   background-color: #ffe5004d;
 }
-
+/* styling for round counter */
 .round-counter {
   margin-left: 30px;
   margin-top: 30px;
@@ -12,31 +13,37 @@ body {
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-style: italic;
 }
+/* round result styling */
 .round-result {
   text-align: center;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   color: #3a5f7f;
 }
+/* styling for game container */
 .game-container {
   border: 3px solid #a900ff5e;
   margin: 0 auto;
   max-width: 90%;
 }
+/* images styling */
 .paper,
 .rock {
   max-width: 108px;
 }
+/* styling for player and computer choice display */
 .p-choice,
 .c-choice {
   margin-left: 38%;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
+/* player score, computer score, and tie counter styling */
 .p-score,
 .c-score,
 .tie-counter {
   text-align: center;
 }
+/* styling for player and computer choices container */
 .player-choices,
 .computer-choices {
   display: flex;
@@ -48,6 +55,7 @@ body {
   margin: 0 auto;
   padding: 15px;
 }
+/* styling for player choice images */
 .player-choices > img {
   cursor: pointer;
   transition: transform 0.2s;
@@ -57,6 +65,7 @@ body {
   border: 1px solid #5af533eb;
   border-radius: 10px;
 }
+/* styling for reset button */
 .reset-game {
   display: none;
   margin: 0 auto;

@@ -1,13 +1,14 @@
+// for keeping track of scores, round, and game state
 let playerScore = 0;
 let computerScore = 0;
 let round = 0;
 let gameActive = true;
-// This function will randomly return either Rock, Paper or Scissors:
+// This function will randomly return either Rock, Paper or Scissors
 const computerSelection = function () {
   let choices = ["Rock", "Paper", "Scissors"];
   return choices[Math.floor(Math.random() * choices.length)];
 };
-// This method will get input from the player:
+// get input from the player
 const playerSelection = document.querySelectorAll(".player-choices img");
 playerSelection.forEach((choice) => {
   choice.addEventListener("click", handClick);
@@ -20,6 +21,7 @@ function handClick() {
   const computerChoice = computerSelection();
   singleRound(playerSelection, computerChoice);
 }
+// compare the choices and determine the round winner
 function singleRound(playerSelection, computerSelection) {
   if (
     (playerSelection === "Rock" && computerSelection === "Scissors") ||
@@ -50,6 +52,7 @@ function singleRound(playerSelection, computerSelection) {
     updateCounter();
     roundResult("Tie!");
   }
+  // for checking game state and display the final result
   if ((round === 5) & (playerScore > computerScore)) {
     stopGame();
     roundResult("You won the Game, Congratulations!");
@@ -64,11 +67,13 @@ function singleRound(playerSelection, computerSelection) {
     showReset();
   }
 }
+// UI variables
 const pChoice = document.querySelector(".p-choice");
 const cChoice = document.querySelector(".c-choice");
 const pScore = document.querySelector(".p-score");
 const cScore = document.querySelector(".c-score");
 const resetButton = document.querySelector(".reset-game");
+// functions for updating UI elements:
 function showChoice(playerChosen, computerChosen) {
   pChoice.textContent = `Your Choice: ${playerChosen}`;
   cChoice.textContent = `Computer Choice: ${computerChosen}`;
@@ -81,20 +86,24 @@ function updateCounter() {
   const roundCounter = document.querySelector(".round-counter");
   roundCounter.textContent = `Round: ${round}`;
 }
+//update result
 function roundResult(resultContent) {
   const roundResult = document.querySelector(".round-result");
   roundResult.textContent = resultContent;
 }
+//stop tracking & game state
 function stopGame() {
   gameActive = false;
   playerSelection.forEach((choice) => {
     choice.removeEventListener("click", handClick);
   });
 }
+// for showing reset button after finishing the game
 function showReset() {
   resetButton.addEventListener("click", reset);
   resetButton.style.display = "block";
 }
+// reset the game state and UI elements
 function reset() {
   pChoice.textContent = "";
   cChoice.textContent = "";
@@ -106,6 +115,7 @@ function reset() {
   updateCounter();
   roundResult("Welcome!");
   resetButton.style.display = "none";
+  // reattach event listeners to player choices
   playerSelection.forEach((choice) => {
     choice.removeEventListener("click", handClick);
   });
