@@ -1,13 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
-    <script src="script.js"></script>
-</head>
-<body>
-    
-</body>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <header class="round-counter">Round: 0</header>
+      <h1 class="round-result">Welcome!</h1>
+      <section class="game-container">
+        <h2 class="p-choice">Your Choice:</h2>
+        <div class="player-choices">
+          <img class="scissors" src="images/Scissors.png" alt="Scissors" />
+          <img src="images/Paper.png" alt="Paper" class="paper" />
+          <img src="images/Rock.png" alt="Rock" class="rock" />
+        </div>
+        <p class="p-score">Score: 0</p>
+        <h2 class="c-choice">Computer Choice:</h2>
+        <div class="computer-choices">
+          <img class="scissors" src="images/Scissors.png" alt="Scissors" />
+          <img src="images/Paper.png" alt="Paper" class="paper" />
+          <img src="images/Rock.png" alt="Rock" class="rock" />
+        </div>
+        <p class="c-score">Score: 0</p>
+      </section>
+      <div class="reset-area">
+        <button class="reset-game" aria-label="Reset the game">
+          Play Again?
+        </button>
+      </div>
+    </main>
+  </body>
 </html>

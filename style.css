@@ -1,0 +1,81 @@
+body {
+  margin: 0;
+  background-color: #ffe5004d;
+}
+
+.round-counter {
+  margin-left: 30px;
+  margin-top: 30px;
+  font-size: 40px;
+  color: red;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-style: italic;
+}
+.round-result {
+  text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: #3a5f7f;
+}
+.game-container {
+  border: 3px solid #a900ff5e;
+  margin: 0 auto;
+  max-width: 90%;
+}
+.paper,
+.rock {
+  max-width: 108px;
+}
+.p-choice,
+.c-choice {
+  margin-left: 38%;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.p-score,
+.c-score,
+.tie-counter {
+  text-align: center;
+}
+.player-choices,
+.computer-choices {
+  display: flex;
+  height: 200px;
+  justify-content: center;
+  gap: 70px;
+  border: 3px solid orange;
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 15px;
+}
+.player-choices > img {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.player-choices > img:hover {
+  transform: scale(1.1);
+  border: 1px solid #5af533eb;
+  border-radius: 10px;
+}
+.reset-game {
+  display: none;
+  margin: 0 auto;
+  color: #00fdff;
+  background-color: #ff000085;
+  cursor: pointer;
+  padding: 10px 48px;
+  border: 1px solid purple;
+  margin-top: 15px;
+  border-radius: 5px;
+  transition: transform 0.2s;
+  font-style: italic;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: bold;
+}
+.reset-game:hover {
+  transform: scale(1.1);
+  color: #ff002d;
+  background-color: #13ffffb0;
+  box-shadow: 1px 1px 5px rgb(170, 170, 170);
+}
